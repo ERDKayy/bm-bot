@@ -1,0 +1,20 @@
+{
+  "name": "bmbot",
+  "version": "0.1.0",
+  "description": "Discord bot developed by ERDK",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "bot",
+    "bm"
+  ],
+  "author": "Eric Kimball (ERDK)",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.3.2"
+  }
+}
