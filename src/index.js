@@ -23,6 +23,12 @@ const responseObject = {
     "ow": "People still play overwatch? Trihard 7"
 }
 
+function attachIsImage(msgAttach) {
+    var url = msgAttach.url;
+    //True if this url is a png image.
+    return url.indexOf("png", url.length - "png".length /*or 3*/) !== -1;
+}
+
 client.on('ready', () => {
     console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`); 
     client.user.setActivity(`Serving ${client.guilds.size} servers`);
@@ -45,6 +51,14 @@ client.user.setActivity(`Serving ${client.guilds.size} servers`);
 client.on('message', async message => {
     if (message.author.bot) return; // ignore commands sent by bots.
 
+    if(message.attachments != 0) {
+        console.log(message.attachments)
+        console.log('Caught an embeded IMAGE!!!!!!');
+        message.channel.send(`:rage: No images in general.`);
+
+    }
+
+
     if(message.content.indexOf(config.prefix) !== 0) return;
   
     // Here we separate our "command" name, and our "arguments" for the command. 
@@ -54,7 +68,10 @@ client.on('message', async message => {
     const args = message.content.slice(prefix.length).trim().split(' ');
     const command = args[0].toLowerCase();
 
+
+
     if(command == "ping") {
+        console.log('test')
         // Calculates ping between sending a message and editing it, giving a nice round-trip latency.
         // The second ping is an average latency between the bot and the websocket server (one-way, not round-trip)
         const m = await message.channel.send("Ping?");
